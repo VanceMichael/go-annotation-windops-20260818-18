@@ -16,9 +16,8 @@ func EvaluateIdempotencyScopeMatches(ctx Context) (Result, error) {
 	storedMethod := ctx.Metadata["method"]
 	storedPath := ctx.Metadata["path"]
 	storedKey := ctx.Metadata["key"]
-	storedScope := storedTenant + "|" + storedMethod + "|" + storedKey
-	requestScope := ctx.TenantID + "|" + ctx.Method + "|" + ctx.Key
-	_ = storedPath
+	storedScope := storedTenant + "|" + storedMethod + "|" + storedPath + "|" + storedKey
+	requestScope := ctx.TenantID + "|" + ctx.Method + "|" + ctx.Path + "|" + ctx.Key
 	if storedScope != requestScope {
 		return deny("idempotency_scope_mismatch", "idempotency key belongs to a different request scope"), nil
 	}

@@ -39,31 +39,25 @@ type DecisionResponse struct {
 }
 
 var evaluators = map[string]func(policy.Context) (policy.Result, error){
-	"WeatherWindowIsSafe":         policy.EvaluateWeatherWindowIsSafe,
-	"WeatherWindowDoesNotOverlap": policy.EvaluateWeatherWindowDoesNotOverlap,
-	"CampaignFitsBudget":          policy.EvaluateCampaignFitsBudget,
-	"SlotHasCapacity":             policy.EvaluateSlotHasCapacity,
-	"CampaignCanBeApproved":       policy.EvaluateCampaignCanBeApproved,
-	"VesselCanBeReserved":         policy.EvaluateVesselCanBeReserved,
-	"CrewMemberIsQualified":       policy.EvaluateCrewMemberIsQualified,
-	"CrewMemberHasRested":         policy.EvaluateCrewMemberHasRested,
-	"CrewAssignmentsDoNotOverlap": policy.EvaluateCrewAssignmentsDoNotOverlap,
-	"PermitCanBeSubmitted":        policy.EvaluatePermitCanBeSubmitted,
-	"PermitCanBeActivated":        policy.EvaluatePermitCanBeActivated,
-	"PermitExpiryIsBounded":       policy.EvaluatePermitExpiryIsBounded,
-	"DispatchFitsVessel":          policy.EvaluateDispatchFitsVessel,
-	"DispatchDepartureIsUnique":   policy.EvaluateDispatchDepartureIsUnique,
-	"WorkOrderCanStart":           policy.EvaluateWorkOrderCanStart,
-	"WorkOrderCanComplete":        policy.EvaluateWorkOrderCanComplete,
-	"EvidenceChecksumIsUnique":    policy.EvaluateEvidenceChecksumIsUnique,
-	"CampaignCanClose":            policy.EvaluateCampaignCanClose,
-	"IdempotencyScopeMatches": func(ctx policy.Context) (policy.Result, error) {
-		result, err := policy.EvaluateIdempotencyScopeMatches(ctx)
-		if err != nil {
-			return policy.Result{}, err
-		}
-		return result, nil
-	},
+	"WeatherWindowIsSafe":             policy.EvaluateWeatherWindowIsSafe,
+	"WeatherWindowDoesNotOverlap":     policy.EvaluateWeatherWindowDoesNotOverlap,
+	"CampaignFitsBudget":              policy.EvaluateCampaignFitsBudget,
+	"SlotHasCapacity":                 policy.EvaluateSlotHasCapacity,
+	"CampaignCanBeApproved":           policy.EvaluateCampaignCanBeApproved,
+	"VesselCanBeReserved":             policy.EvaluateVesselCanBeReserved,
+	"CrewMemberIsQualified":           policy.EvaluateCrewMemberIsQualified,
+	"CrewMemberHasRested":             policy.EvaluateCrewMemberHasRested,
+	"CrewAssignmentsDoNotOverlap":     policy.EvaluateCrewAssignmentsDoNotOverlap,
+	"PermitCanBeSubmitted":            policy.EvaluatePermitCanBeSubmitted,
+	"PermitCanBeActivated":            policy.EvaluatePermitCanBeActivated,
+	"PermitExpiryIsBounded":           policy.EvaluatePermitExpiryIsBounded,
+	"DispatchFitsVessel":              policy.EvaluateDispatchFitsVessel,
+	"DispatchDepartureIsUnique":       policy.EvaluateDispatchDepartureIsUnique,
+	"WorkOrderCanStart":               policy.EvaluateWorkOrderCanStart,
+	"WorkOrderCanComplete":            policy.EvaluateWorkOrderCanComplete,
+	"EvidenceChecksumIsUnique":        policy.EvaluateEvidenceChecksumIsUnique,
+	"CampaignCanClose":                policy.EvaluateCampaignCanClose,
+	"IdempotencyScopeMatches":         policy.EvaluateIdempotencyScopeMatches,
 	"OptimisticVersionMatches":        policy.EvaluateOptimisticVersionMatches,
 	"OutboxRetryIsDue":                policy.EvaluateOutboxRetryIsDue,
 	"RetryDoesNotRepeatCommittedStep": policy.EvaluateRetryDoesNotRepeatCommittedStep,
